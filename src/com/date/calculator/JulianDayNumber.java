@@ -6,13 +6,16 @@ public class JulianDayNumber {
 
     // https://en.wikipedia.org/wiki/Julian_day
 
+    // valid for dates starting from a Gregorian calendar
     public static int calculate(LocalDate date) {
         int a = calculateA(date.getMonthValue());
         int y = calculateY(date.getYear(), a);
         int m = calculateM(date.getMonthValue(), a);
-        int addend1 = ((153 * m) + 2) / 5;
-        int addend2 = y / 4;
-        return date.getDayOfMonth() + addend1 + (365 * y) + addend2 - 32083;
+        int entier1 = ((153 * m) + 2) / 5;
+        int entier2 = y / 4;
+        int entier3 = y / 100;
+        int entier4 = y / 400;
+        return date.getDayOfMonth() + entier1 + (365 * y) + entier2 - entier3 + entier4 - 32045;
     }
 
     private static int calculateA(final int month) {
