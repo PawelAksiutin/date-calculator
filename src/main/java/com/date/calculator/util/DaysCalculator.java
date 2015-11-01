@@ -1,4 +1,6 @@
-package com.date.calculator;
+package com.date.calculator.util;
+
+import com.date.calculator.date.SimpleLocalDate;
 
 import static java.lang.Math.abs;
 

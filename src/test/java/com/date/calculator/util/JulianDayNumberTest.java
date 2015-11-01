@@ -1,5 +1,7 @@
-package com.date.calculator;
+package com.date.calculator.util;
 
+import com.date.calculator.date.SimpleLocalDate;
+import com.date.calculator.util.JulianDayNumber;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;

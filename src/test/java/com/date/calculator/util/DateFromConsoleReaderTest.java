@@ -1,5 +1,8 @@
-package com.date.calculator;
+package com.date.calculator.util;
 
+import com.date.calculator.date.SimpleLocalDate;
+import com.date.calculator.date.SimpleLocalDateParseException;
+import com.date.calculator.util.DateFromConsoleReader;
 import org.junit.After;
 import org.junit.Test;
 

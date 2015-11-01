@@ -1,4 +1,7 @@
-package com.date.calculator;
+package com.date.calculator.util;
+
+import com.date.calculator.date.SimpleLocalDate;
+import com.date.calculator.date.SimpleLocalDateParseException;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package com.date.calculator;
+package com.date.calculator.date;
 
 import java.util.Scanner;
 

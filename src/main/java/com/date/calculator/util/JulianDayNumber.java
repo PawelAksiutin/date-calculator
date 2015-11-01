@@ -1,4 +1,6 @@
-package com.date.calculator;
+package com.date.calculator.util;
+
+import com.date.calculator.date.SimpleLocalDate;
 
 public class JulianDayNumber {
 

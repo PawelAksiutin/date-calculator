@@ -1,4 +1,4 @@
-package com.date.calculator;
+package com.date.calculator.date;
 
 public class SimpleLocalDateParseException extends RuntimeException {
     public SimpleLocalDateParseException(final String message, final Throwable cause) {
