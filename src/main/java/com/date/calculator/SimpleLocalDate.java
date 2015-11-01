@@ -39,4 +39,8 @@ public class SimpleLocalDate {
         return day;
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s/%s/%s", day, month, year);
+    }
 }
