@@ -4,8 +4,8 @@ import java.time.LocalDate;
 
 public class JulianDayNumber {
 
+    // Julian Day Number algorithm with O(1) complexity
     // https://en.wikipedia.org/wiki/Julian_day
-
     // valid for dates starting from a Gregorian calendar
     public static int calculate(LocalDate date) {
         int a = calculateA(date.getMonthValue());
