@@ -1,5 +1,6 @@
 package com.date.calculator.date;
 
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class SimpleLocalDate {
@@ -21,7 +22,7 @@ public class SimpleLocalDate {
             int month = scanner.nextInt();
             int year = scanner.nextInt();
             return new SimpleLocalDate(day, month, year);
-        } catch (Exception e) {
+        } catch (NoSuchElementException e) {
             throw new SimpleLocalDateParseException(e.getMessage(), e.getCause());
         }
     }
