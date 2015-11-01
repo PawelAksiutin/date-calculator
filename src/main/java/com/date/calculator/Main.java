@@ -14,10 +14,10 @@ public class Main {
         LocalDate date2 = null;
         try {
             System.out.println("Please enter fist date.");
-            date1 = DateFromConsoleReader.readWithRetry(3);
+            date1 = DateFromConsoleReader.readWithRetry(2);
 
             System.out.println("Please enter second date.");
-            date2 = DateFromConsoleReader.readWithRetry(3);
+            date2 = DateFromConsoleReader.readWithRetry(2);
         } catch (DateTimeParseException e) {
             System.err.println("Application will exit.");
             return;

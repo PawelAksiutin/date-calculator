@@ -11,7 +11,7 @@ public class DateFromConsoleReader {
     public static final String ERROR_MESSAGE = "Date entered is incorrect. Please try again. You have %d more attempt(s).";
 
     public static LocalDate readWithRetry(final int retriesNumber) {
-        int numTries = retriesNumber;
+        int numTries = retriesNumber + 1;
         while (true) {
             try {
                 return readDateFromConsole();
@@ -26,7 +26,7 @@ public class DateFromConsoleReader {
 
     public static LocalDate readDateFromConsole() {
         Scanner scanner = new Scanner(System.in);
-        String stringDate1 = scanner.nextLine();
-        return LocalDate.parse(stringDate1, FORMATTER);
+        String stringDate = scanner.nextLine();
+        return LocalDate.parse(stringDate, FORMATTER);
     }
 }
