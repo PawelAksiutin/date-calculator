@@ -18,7 +18,7 @@ public class Main {
             LocalDate date2 = DateFromConsoleReader.readWithRetry(2);
 
             int numberOfDays = DaysCalculator.fullDaysBetween(date1, date2);
-            System.out.println(String.format("%d day(s) between %s and %s", numberOfDays, date1, date2));
+            System.out.println(String.format("%d day(s) between %s and %s", numberOfDays, date1.format(FORMATTER), date2.format(FORMATTER)));
         } catch (DateTimeParseException e) {
             System.err.println("Application will exit.");
         }
