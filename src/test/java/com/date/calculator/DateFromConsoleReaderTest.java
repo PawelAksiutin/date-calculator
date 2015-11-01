@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
-import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -17,10 +16,10 @@ public class DateFromConsoleReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream("11/12/2312".getBytes());
         System.setIn(in);
 
-        LocalDate date = DateFromConsoleReader.readWithRetry(2);
+        SimpleLocalDate date = DateFromConsoleReader.readWithRetry(2);
 
-        assertThat(date.getDayOfMonth(), equalTo(11));
-        assertThat(date.getMonth().getValue(), equalTo(12));
+        assertThat(date.getDay(), equalTo(11));
+        assertThat(date.getMonth(), equalTo(12));
         assertThat(date.getYear(), equalTo(2312));
     }
 
@@ -29,10 +28,10 @@ public class DateFromConsoleReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream("3/9/1735".getBytes());
         System.setIn(in);
 
-        LocalDate date = DateFromConsoleReader.readWithRetry(0);
+        SimpleLocalDate date = DateFromConsoleReader.readWithRetry(0);
 
-        assertThat(date.getDayOfMonth(), equalTo(3));
-        assertThat(date.getMonth().getValue(), equalTo(9));
+        assertThat(date.getDay(), equalTo(3));
+        assertThat(date.getMonth(), equalTo(9));
         assertThat(date.getYear(), equalTo(1735));
     }
 
@@ -49,10 +48,10 @@ public class DateFromConsoleReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream("11/12/2312".getBytes());
         System.setIn(in);
 
-        LocalDate date = DateFromConsoleReader.readDateFromConsole();
+        SimpleLocalDate date = DateFromConsoleReader.readDateFromConsole();
 
-        assertThat(date.getDayOfMonth(), equalTo(11));
-        assertThat(date.getMonth().getValue(), equalTo(12));
+        assertThat(date.getDay(), equalTo(11));
+        assertThat(date.getMonth(), equalTo(12));
         assertThat(date.getYear(), equalTo(2312));
     }
 
@@ -61,10 +60,10 @@ public class DateFromConsoleReaderTest {
         ByteArrayInputStream in = new ByteArrayInputStream("3/9/1735".getBytes());
         System.setIn(in);
 
-        LocalDate date = DateFromConsoleReader.readDateFromConsole();
+        SimpleLocalDate date = DateFromConsoleReader.readDateFromConsole();
 
-        assertThat(date.getDayOfMonth(), equalTo(3));
-        assertThat(date.getMonth().getValue(), equalTo(9));
+        assertThat(date.getDay(), equalTo(3));
+        assertThat(date.getMonth(), equalTo(9));
         assertThat(date.getYear(), equalTo(1735));
     }
 

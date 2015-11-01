@@ -4,8 +4,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.Collection;
 
@@ -14,8 +12,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 @RunWith(Parameterized.class)
 public class DaysCalculatorTest {
-
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy");
 
     private String date1;
     private String date2;
@@ -42,8 +38,8 @@ public class DaysCalculatorTest {
 
     @Test
     public void shouldCorrectlyCalculateJulianDayNumber() {
-        LocalDate localDate1 = LocalDate.parse(date1, FORMATTER);
-        LocalDate localDate2 = LocalDate.parse(date2, FORMATTER);
-        assertThat(DaysCalculator.fullDaysBetween(localDate1, localDate2), equalTo(numberOfDays));
+        SimpleLocalDate slDate1 = SimpleLocalDate.parse(date1);
+        SimpleLocalDate slDate2 = SimpleLocalDate.parse(date2);
+        assertThat(DaysCalculator.fullDaysBetween(slDate1, slDate2), equalTo(numberOfDays));
     }
 }

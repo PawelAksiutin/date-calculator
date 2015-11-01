@@ -1,21 +1,19 @@
 package com.date.calculator;
 
-import java.time.LocalDate;
-
 public class JulianDayNumber {
 
     // Julian Day Number algorithm with O(1) complexity
     // https://en.wikipedia.org/wiki/Julian_day
     // valid for dates starting from a Gregorian calendar
-    public static int calculate(LocalDate date) {
-        int a = calculateA(date.getMonthValue());
+    public static int calculate(SimpleLocalDate date) {
+        int a = calculateA(date.getMonth());
         int y = calculateY(date.getYear(), a);
-        int m = calculateM(date.getMonthValue(), a);
+        int m = calculateM(date.getMonth(), a);
         int entier1 = ((153 * m) + 2) / 5;
         int entier2 = y / 4;
         int entier3 = y / 100;
         int entier4 = y / 400;
-        return date.getDayOfMonth() + entier1 + (365 * y) + entier2 - entier3 + entier4 - 32045;
+        return date.getDay() + entier1 + (365 * y) + entier2 - entier3 + entier4 - 32045;
     }
 
     private static int calculateA(final int month) {
