@@ -21,12 +21,25 @@ public class SimpleLocalDate {
             int day = scanner.nextInt();
             int month = scanner.nextInt();
             int year = scanner.nextInt();
+            validateDay(day);
+            validateMonth(month);
             return new SimpleLocalDate(day, month, year);
         } catch (NoSuchElementException e) {
             throw new SimpleLocalDateParseException(e.getMessage(), e.getCause());
         }
     }
 
+    private static void validateDay(final int day) {
+        if ((day < 1) || day > 31) {
+            throw new SimpleLocalDateParseException("Day out of range.");
+        }
+    }
+
+    private static void validateMonth(final int month) {
+        if ((month < 1) || month > 12) {
+            throw new SimpleLocalDateParseException("Month out of range.");
+        }
+    }
     public int getMonth() {
         return month;
     }
