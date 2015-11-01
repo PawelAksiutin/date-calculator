@@ -25,7 +25,7 @@ public class Main {
             return;
         }
         int numberOfDays = DaysCalculator.fullDaysBetween(date1, date2);
-        System.out.println(numberOfDays + " day(s) between " + date1.format(FORMATTER) + " and " + date2.format(FORMATTER) + " .");
+        System.out.println(String.format("%d day(s) between %s and %s .", numberOfDays, date1.format(FORMATTER), date2.format(FORMATTER)));
     }
 
 }
