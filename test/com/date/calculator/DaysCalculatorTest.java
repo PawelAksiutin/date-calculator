@@ -10,6 +10,8 @@ import static org.hamcrest.MatcherAssert.assertThat;
 
 public class DaysCalculatorTest {
 
+    //TODO to introduce JUnit parametrized
+    // improve naming
     @Test
     public void subtractCase1() {
         //Case 1. 02/06/1983 - 22/06/1983: 19 days
@@ -48,6 +50,17 @@ public class DaysCalculatorTest {
         //Case 4. 07/11/1972 - 08/11/1972: 0 days
         LocalDate startDate = LocalDate.of(1972, 11, 7);
         LocalDate endDate = LocalDate.of(1972, 11, 8);
+
+        int numberOfDays = DaysCalculator.fullDaysBetween(startDate, endDate);
+
+        assertThat(numberOfDays, equalTo(0));
+    }
+
+    @Test
+    public void shouldReturn0ForSameDates() {
+        // 07/11/1972 - 07/11/1972: 0 days
+        LocalDate startDate = LocalDate.of(1972, 11, 7);
+        LocalDate endDate = LocalDate.of(1972, 11, 7);
 
         int numberOfDays = DaysCalculator.fullDaysBetween(startDate, endDate);
 
