@@ -1,93 +1,49 @@
 package com.date.calculator;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Collection;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+@RunWith(Parameterized.class)
 public class DaysCalculatorTest {
 
-    //TODO to introduce JUnit parametrized
-    // improve naming
-    @Test
-    public void subtractCase1() {
-        //Case 1. 02/06/1983 - 22/06/1983: 19 days
-        LocalDate startDate = LocalDate.of(1983, 6, 2);
-        LocalDate endDate = LocalDate.of(1983, 6, 22);
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("d/M/yyyy");
 
-        int numberOfDays = DaysCalculator.fullDaysBetween(startDate, endDate);
+    private String date1;
+    private String date2;
+    private int numberOfDays;
 
-        assertThat(numberOfDays, equalTo(19));
+    public DaysCalculatorTest(final String date1, final String date2, final int numberOfDays) {
+        this.date1 = date1;
+        this.date2 = date2;
+        this.numberOfDays = numberOfDays;
+    }
+
+    @Parameterized.Parameters
+    public static Collection data() {
+        return Arrays.asList(new Object[][]{
+                {"02/06/1983", "22/06/1983", 19},
+                {"04/07/1984", "25/12/1984", 173},
+                {"03/01/1989", "03/08/1983", 1979},
+                {"01/01/2000", "03/01/2000", 1},
+                {"07/11/1972", "08/11/1972", 0},
+                {"07/11/1972", "07/11/1972", 0},
+                {"01/01/1901", "31/12/2999", 401400}
+        });
     }
 
     @Test
-    public void subtractsCase2() {
-        //Case 2. 04/07/1984 - 25/12/1984: 173 days
-        LocalDate startDate = LocalDate.of(1984, 7, 4);
-        LocalDate endDate = LocalDate.of(1984, 12, 25);
-
-        int numberOfDays = DaysCalculator.fullDaysBetween(startDate, endDate);
-
-        assertThat(numberOfDays, equalTo(173));
+    public void shouldCorrectlyCalculateJulianDayNumber() {
+        LocalDate localDate1 = LocalDate.parse(date1, FORMATTER);
+        LocalDate localDate2 = LocalDate.parse(date2, FORMATTER);
+        assertThat(DaysCalculator.fullDaysBetween(localDate1, localDate2), equalTo(numberOfDays));
     }
-
-    @Test
-    public void subtractsCase3() {
-        //Case 3. 03/01/1989 - 03/08/1983: 1979 days
-        LocalDate startDate = LocalDate.of(1989, 1, 3);
-        LocalDate endDate = LocalDate.of(1983, 8, 3);
-
-        int numberOfDays = DaysCalculator.fullDaysBetween(startDate, endDate);
-
-        assertThat(numberOfDays, equalTo(1979));
-    }
-
-    @Test
-    public void subtractsCase4() {
-        //Case 4. 07/11/1972 - 08/11/1972: 0 days
-        LocalDate startDate = LocalDate.of(1972, 11, 7);
-        LocalDate endDate = LocalDate.of(1972, 11, 8);
-
-        int numberOfDays = DaysCalculator.fullDaysBetween(startDate, endDate);
-
-        assertThat(numberOfDays, equalTo(0));
-    }
-
-    @Test
-    public void shouldReturn0ForSameDates() {
-        // 07/11/1972 - 07/11/1972: 0 days
-        LocalDate startDate = LocalDate.of(1972, 11, 7);
-        LocalDate endDate = LocalDate.of(1972, 11, 7);
-
-        int numberOfDays = DaysCalculator.fullDaysBetween(startDate, endDate);
-
-        assertThat(numberOfDays, equalTo(0));
-    }
-
-    @Test
-    public void subtractsCase5() {
-        //Case 5. 01/01/2000 - 03/01/2000: 1 day
-        LocalDate startDate = LocalDate.of(2000, 1, 1);
-        LocalDate endDate = LocalDate.of(2000, 1, 3);
-
-        int numberOfDays = DaysCalculator.fullDaysBetween(startDate, endDate);
-
-        assertThat(numberOfDays, equalTo(1));
-    }
-
-    @Test
-    public void subtractsEdgeDates() {
-        //Case 6. 01/01/1901 - 31/12/2999: 401400 days
-        LocalDate startDate = LocalDate.of(1901, 1, 1);
-        LocalDate endDate = LocalDate.of(2999, 12, 31);
-
-        int numberOfDays = DaysCalculator.fullDaysBetween(startDate, endDate);
-
-        int numberOfDaysCalculatedByJavaLibrary = (int) ChronoUnit.DAYS.between(startDate, endDate) - 1;
-        assertThat(numberOfDays, equalTo(numberOfDaysCalculatedByJavaLibrary));
-    }
-
 }
