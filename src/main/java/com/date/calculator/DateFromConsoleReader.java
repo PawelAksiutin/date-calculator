@@ -1,6 +1,5 @@
 package com.date.calculator;
 
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class DateFromConsoleReader {
@@ -12,7 +11,7 @@ public class DateFromConsoleReader {
         while (true) {
             try {
                 return readDateFromConsole();
-            } catch (DateTimeParseException e) {
+            } catch (SimpleLocalDateParseException e) {
                 if (--numTries < 1) {
                     throw e;
                 }

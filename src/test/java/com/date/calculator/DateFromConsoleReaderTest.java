@@ -4,7 +4,6 @@ import org.junit.After;
 import org.junit.Test;
 
 import java.io.ByteArrayInputStream;
-import java.time.format.DateTimeParseException;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -35,7 +34,7 @@ public class DateFromConsoleReaderTest {
         assertThat(date.getYear(), equalTo(1735));
     }
 
-    @Test(expected = DateTimeParseException.class)
+    @Test(expected = SimpleLocalDateParseException.class)
     public void shouldReadWithRetryThrowExceptionWhenWrongInputOneTimeWithZeroLimit() throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream("Bad date".getBytes());
         System.setIn(in);
@@ -67,7 +66,7 @@ public class DateFromConsoleReaderTest {
         assertThat(date.getYear(), equalTo(1735));
     }
 
-    @Test(expected = DateTimeParseException.class)
+    @Test(expected = SimpleLocalDateParseException.class)
     public void shouldReadDateFromConsoleThrowExceptionWhenWrongInput() throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream("Bad date".getBytes());
         System.setIn(in);
@@ -75,7 +74,7 @@ public class DateFromConsoleReaderTest {
         DateFromConsoleReader.readDateFromConsole();
     }
 
-    @Test(expected = DateTimeParseException.class)
+    @Test(expected = SimpleLocalDateParseException.class)
     public void shouldReadDateFromConsoleThrowExceptionWhenWrongDateFormat() throws Exception {
         ByteArrayInputStream in = new ByteArrayInputStream("12-12-2012".getBytes());
         System.setIn(in);

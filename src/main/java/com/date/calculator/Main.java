@@ -1,7 +1,5 @@
 package com.date.calculator;
 
-import java.time.format.DateTimeParseException;
-
 public class Main {
 
     public static void main(String[] args) {
@@ -15,7 +13,7 @@ public class Main {
 
             int numberOfDays = DaysCalculator.fullDaysBetween(date1, date2);
             System.out.println(String.format("%d day(s) between %s and %s", numberOfDays, date1, date2));
-        } catch (DateTimeParseException e) {
+        } catch (SimpleLocalDateParseException e) {
             System.err.println("Application will exit.");
         }
     }

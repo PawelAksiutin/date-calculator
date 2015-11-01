@@ -1,6 +1,5 @@
 package com.date.calculator;
 
-import java.time.format.DateTimeParseException;
 import java.util.Scanner;
 
 public class SimpleLocalDate {
@@ -23,7 +22,7 @@ public class SimpleLocalDate {
             int year = scanner.nextInt();
             return new SimpleLocalDate(day, month, year);
         } catch (Exception e) {
-            throw new DateTimeParseException(null, stringDate, scanner.radix());
+            throw new SimpleLocalDateParseException(e.getMessage(), e.getCause());
         }
     }
 
