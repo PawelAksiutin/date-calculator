@@ -1,7 +1,5 @@
 package com.date.calculator;
 
-import org.hamcrest.MatcherAssert;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -41,5 +39,4 @@ public class JulianDayNumberTest {
         LocalDate localDate = LocalDate.parse(date, FORMATTER);
         assertThat(JulianDayNumber.calculate(localDate), equalTo(jdnExpected));
     }
-
 }
